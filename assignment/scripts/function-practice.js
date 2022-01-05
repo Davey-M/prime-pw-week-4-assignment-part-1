@@ -135,12 +135,25 @@ console.log(allPositive(newNumberArray));
 // Below is all my code:
 
 function freqCount(array, element) {
-	let crawler = 0;
-    let count = 0;
     let level = 0;
-    let countables = [];
+    let output = {};
+    let data = []
+    let count = 0;
 
-    return 
+    array.map(item => {
+        if (item === element) {
+            count++
+        }
+        else if (typeof item === Array) {
+            checkInnerArray(item, element, level + 1)
+        }
+    })
+
+    return output;
+}
+
+function checkInnerArray(array, element, level) {
+
 }
 
 console.log(freqCount([1, 4, 4, [1, 1, [1, 2, 1, 1]]], 1)) // should output [[0, 1], [1, 2], [2, 3]]
