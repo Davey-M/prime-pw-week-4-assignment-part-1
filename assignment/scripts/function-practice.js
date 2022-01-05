@@ -105,12 +105,9 @@ function allPositive(array) {
 	});
 	return positiveIntegers;
 }
-let newNumberArray = Array(9) // Creates new array with 9 empty spots
-	.fill(0) // Fills each of those 9 spots with a 0
-	.map((e) => {
-		// Adds a random number between -10 and 9 to every item in the array
-		e + Math.floor(Math.random() * 20) - 10;
-	});
+// the code below creates an empty array with 9 spots, fills each of those spots with a 0, and then adds a random number from -10 to 9 to them.
+let newNumberArray = Array(9).fill(0).map((e) => e + Math.floor(Math.random() * 20) - 10);
+
 console.log(newNumberArray);
 console.log(allPositive(newNumberArray));
 
@@ -118,7 +115,7 @@ console.log(allPositive(newNumberArray));
 //     CodeWars(https://www.codewars.com/). Then describe it
 //     here in a comment, write the function, and test it!
 
-// This is an challenge from https://edabit.com/challenge/MCK2Rqzn78pMksvsK:
+// This is an challenge from https://edabit.com/:
 // Create a function that takes in a nested array and an element and returns the frequency of that element by nested level.
 // below is the example that was given:
 
@@ -133,6 +130,8 @@ console.log(allPositive(newNumberArray));
 // ➞ [[0, 0], [1, 1], [2, 1], [3, 1], [4, 1]]
 
 // Below is all my code:
+
+// I will admit I probably should have gone for something easier but it was a fun couple of hours...
 
 function freqCount(array, element) {
     let level = 0;
@@ -200,4 +199,4 @@ function sum(array) {
     return num;
 }
 
-console.log(freqCount([1, 4, 4, [1, 1, [1, 2, 1, 1]]], 1)) // should output [[0, 1], [1, 2], [2, 3]]
+// console.log(freqCount([1, 4, 4, [1, 1, [1, 2, 1, 1]]], 1)) // should output [[0, 1], [1, 2], [2, 3]]
