@@ -121,14 +121,14 @@ console.log(allPositive(newNumberArray));
 // This is an challenge from https://edabit.com/challenge/MCK2Rqzn78pMksvsK:
 // Create a function that takes in a nested array and an element and returns the frequency of that element by nested level.
 // below is the example that was given:
-//
+
 // freqCount([1, 4, 4, [1, 1, [1, 2, 1, 1]]], 1)
 // ➞ [[0, 1], [1, 2], [2, 3]]
 // // The array has one 1 at level 0, 2 1's at level 1, and 3 1's at level 2.
-// 
+
 // freqCount([1, 5, 5, [5, [1, 2, 1, 1], 5, 5], 5, [5]], 5)
 // ➞ [[0, 3], [1, 4], [2, 0]]
-// 
+
 // freqCount([1, [2], 1, [[2]], 1, [[[2]]], 1, [[[[2]]]]], 2)
 // ➞ [[0, 0], [1, 1], [2, 1], [3, 1], [4, 1]]
 
@@ -137,6 +137,7 @@ console.log(allPositive(newNumberArray));
 function freqCount(array, element) {
     let level = 0;
     let output = {};
+    let returner = [];
     let count = 0;
 
     array.map(item => {
@@ -161,7 +162,11 @@ function freqCount(array, element) {
 
     output[0] = [count];
 
-    return output;
+    for (let e in output) {
+        returner.push([parseInt(e), sum(output[e])])
+    }
+
+    return returner;
 }
 
 function checkInnerArray(array, element, level) {
@@ -184,9 +189,15 @@ function checkInnerArray(array, element, level) {
         count: count,
     }
 
-    console.log('Inner Functions', innerfunctions)
-
     return [return_data, ...innerfunctions]
+}
+
+function sum(array) {
+    let num = 0;
+    for (let item of array) {
+        num += item
+    }
+    return num;
 }
 
 console.log(freqCount([1, 4, 4, [1, 1, [1, 2, 1, 1]]], 1)) // should output [[0, 1], [1, 2], [2, 3]]
