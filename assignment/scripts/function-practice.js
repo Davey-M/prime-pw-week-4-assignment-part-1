@@ -137,23 +137,56 @@ console.log(allPositive(newNumberArray));
 function freqCount(array, element) {
     let level = 0;
     let output = {};
-    let data = []
     let count = 0;
 
     array.map(item => {
         if (item === element) {
             count++
         }
-        else if (typeof item === Array) {
-            checkInnerArray(item, element, level + 1)
+        else if (typeof item === 'object') {
+            let innerOutputs = checkInnerArray(item, element, level + 1)
+
+            for(let i = 0; i < innerOutputs.length; i++) {
+                let inner_array = innerOutputs[i]
+
+                if (output[inner_array.level]) {
+                    output[inner_array.level].push(inner_array.count);
+                }
+                else {
+                    output[inner_array.level] = [inner_array.count];
+                }
+            }
         }
     })
+
+    output[0] = [count];
 
     return output;
 }
 
 function checkInnerArray(array, element, level) {
+    let count = 0;
+    let innerfunctions = [];
 
+    array.map(item => {
+        if (item === element) {
+            count++
+        }
+        else if (typeof item === 'object') {
+            let innerOutputs = checkInnerArray(item, element, level + 1)
+
+            innerfunctions = [...innerfunctions, ...innerOutputs]
+        }
+    })
+
+    let return_data = {
+        level: level,
+        count: count,
+    }
+
+    console.log('Inner Functions', innerfunctions)
+
+    return [return_data, ...innerfunctions]
 }
 
 console.log(freqCount([1, 4, 4, [1, 1, [1, 2, 1, 1]]], 1)) // should output [[0, 1], [1, 2], [2, 3]]
